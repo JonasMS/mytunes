@@ -31,5 +31,12 @@ describe('App', function() {
     app.get('library').at(1).enqueue();
     expect(app.get('songQueue').at(0)).to.equal(app.get('library').at(1));
   });
+  it('removes any queued song when a "dequeue" event is fired', function() {
+    app.get('library').at(0).enqueue();
+    app.get('library').at(1).enqueue();
+    expect(app.get('songQueue').length).to.equal(2);
+    app.get('library').at(1).dequeue();
+    expect(app.get('songQueue').length).to.equal(1);
+  });
 
 });
