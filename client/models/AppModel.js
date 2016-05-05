@@ -11,6 +11,10 @@ var AppModel = Backbone.Model.extend({
       this.set('currentSong', this.attributes.songQueue.at(0));
     }, this);
 
+    params.library.on('enqueue', function(song) {
+      this.attributes.songQueue.push(song);
+    }, this);
+
     /* Note that 'this' is passed as the third argument. That third argument is
     the context. The 'play' handler will always be bound to that context we pass in.
     In this example, we're binding it to the App. This is helpful because otherwise
