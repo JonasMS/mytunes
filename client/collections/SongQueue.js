@@ -4,16 +4,15 @@ var SongQueue = Backbone.Collection.extend({
   model: SongModel,
   
   initialize: function() {
-    this.on('add', function() {
-      debugger;
+    this.on('add', function(e) {
       if (this.length === 1) {
-        playFirst();
+        this.playFirst(e);
       }
     });
   }
 });
 
 
-SongQueue.prototype.playFirst = function() {
-  SongQueue.model.play();
+SongQueue.prototype.playFirst = function(song) {
+  song.play();
 };
