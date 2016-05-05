@@ -6,7 +6,7 @@ var SongQueue = Backbone.Collection.extend({
   initialize: function() {
     this.on('add', function(e) {
       if (this.length === 1) {
-        this.playFirst(e);
+        this.playFirst();
       }
     });
     this.on('ended', function(e) {
@@ -15,10 +15,14 @@ var SongQueue = Backbone.Collection.extend({
         this.playFirst(this.at(0));
       }
     });
+
+    this.on('dequeue', function(e) {
+      this.remove(e);
+    });
+  },
+
+  playFirst: function() {
+     this.at(0).play();
   }
+
 });
-
-
-SongQueue.prototype.playFirst = function(song) {
-  song.play();
-};
