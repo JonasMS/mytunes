@@ -12,6 +12,10 @@ var Songs = Backbone.Collection.extend({
   },
 
   initialize: function() {
-    this.fetch();
+    this.fetch({
+      success: function() {
+        this.trigger('songsLoaded', this);
+      }.bind(this)
+    });
   }
 });
