@@ -7,12 +7,11 @@ var AppModel = Backbone.Model.extend({
 
     // debugger;
     this.attributes.currentSong.on('ended', function(e) {
-      console.log(e);    
       this.set('currentSong', this.attributes.songQueue.at(0));
     }, this);
 
     params.library.on('enqueue', function(song) {
-      this.attributes.songQueue.push(song);
+      this.attributes.songQueue.add(song);
     }, this);
 
     /* Note that 'this' is passed as the third argument. That third argument is
