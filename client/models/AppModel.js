@@ -11,7 +11,7 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('enqueue', function(song) {
-      this.attributes.songQueue.add(song);
+      this.get('songQueue').add(song);
     }, this);
 
     /* Note that 'this' is passed as the third argument. That third argument is
